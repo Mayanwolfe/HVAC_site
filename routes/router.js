@@ -2,6 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const Appointment = require('../models/appointmentModel');
+const path = require('path');
 //const nodemailer = require('nodemailer');
 
 //TODO: Set up nodemailer transport
@@ -16,10 +17,10 @@ router.post('/schedule_service', async (req, res) => {
 
     //TODO: Set up confirmation email message and send to customer
 
-    res.status(201).json({ message: 'Appointment scheduled successfully!' });
+    res.sendFile(path.join(__dirname, '../views/bookResult.html'));
   } catch (err) {
     console.log(err);
-    res.status(500).json({ error: 'Failed to schedule appointment' });
+    res.sendFile(path.join(__dirname, '../views/bookError.html'));
   }
 });
 
